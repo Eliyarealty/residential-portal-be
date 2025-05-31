@@ -8,6 +8,12 @@ const PORT = process.env.PORT || 8000;
 
 // Middlewares
 app.use(cors({ origin: "http://localhost:3000" }));
+app.use(
+  cors({
+    origin: ["https://residential-portal.vercel.app/", "http://localhost:3000"],
+    credentials: true, // optional, if you're using cookies
+  })
+);
 app.use(express.json());
 
 // Import all models to initialize them and setup associations
