@@ -10,10 +10,10 @@ const PORT = process.env.PORT;
 app.use(
   cors({
     origin: [
-      "https://residential-portal-production.up.railway.app",
-      "https://residential-portal-be-production.up.railway.app", // Correct Railway backend domain
-      "http://localhost:3000",
-      "http://localhost:8000",
+      // "https://residential-portal-production.up.railway.app",
+      "https://residential-portal-be-production.up.railway.app",
+      // "http://localhost:3000",
+      // "http://localhost:8000",
     ],
     credentials: true,
   })
