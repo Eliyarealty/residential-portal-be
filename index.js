@@ -10,7 +10,7 @@ const PORT = process.env.PORT;
 app.use(
   cors({
     origin: [
-      "https://residential-portal.vercel.app",
+      "https://residential-portal-production.up.railway.app",
       "http://localhost:3306",
       "http://localhost:8000",
     ],
