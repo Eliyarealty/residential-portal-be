@@ -9,13 +9,7 @@ const PORT = process.env.PORT;
 // ✅ CORS configuration
 app.use(
   cors({
-    origin: [
-      // "https://residential-portal-production.up.railway.app",
-      "https://residential-portal-be-production.up.railway.app",
-      "https://residential-portal-production.up.railway.app",
-      // "http://localhost:3000",
-      // "http://localhost:8000",
-    ],
+    origin: ["https://residential-portal-production.up.railway.app"],
     credentials: true,
   })
 );
