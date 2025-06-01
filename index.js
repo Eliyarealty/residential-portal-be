@@ -4,14 +4,15 @@ require("dotenv").config();
 const sequelize = require("./config/sequelize");
 
 const app = express();
-const PORT = process.env.PORT;
+const PORT = process.env.PORT || 8080;
 
 // ✅ CORS configuration
 app.use(
   cors({
     origin: [
       "https://residential-portal-production.up.railway.app",
-      "http://localhost:3306",
+      "https://residential-portal-be-production.up.railway.app", // Correct Railway backend domain
+      "http://localhost:3000",
       "http://localhost:8000",
     ],
     credentials: true,
@@ -46,6 +47,15 @@ app.use("/api/v2/blog", blogRoutes);
 // ✅ Default route for test
 app.get("/", (req, res) => {
   res.status(200).send("✅ Backend is running on Railway 🚀");
+});
+
+// ✅ Catch-all route for unmatched paths
+app.use((req, res) => {
+  res.status(404).json({
+    status: false,
+    message: "❌ Route not found",
+    url: req.originalUrl,
+  });
 });
 
 // ✅ Global unhandled error catch
