@@ -4,7 +4,7 @@ require("dotenv").config();
 const sequelize = require("./config/sequelize");
 
 const app = express();
-const PORT = process.env.PORT || 8080;
+const PORT = process.env.PORT;
 
 // ✅ CORS configuration
 app.use(
