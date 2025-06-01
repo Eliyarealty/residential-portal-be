@@ -12,6 +12,7 @@ app.use(
     origin: [
       // "https://residential-portal-production.up.railway.app",
       "https://residential-portal-be-production.up.railway.app",
+      "https://residential-portal-production.up.railway.app/",
       // "http://localhost:3000",
       // "http://localhost:8000",
     ],
