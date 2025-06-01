@@ -12,7 +12,7 @@ app.use(
   cors({
     origin: [
       "https://residential-portal.vercel.app",
-      "http://localhost:3000",
+      "http://localhost:3306",
       "http://localhost:8000",
     ],
     credentials: true,
