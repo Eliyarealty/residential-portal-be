@@ -5,7 +5,6 @@ const sequelize = require("./config/sequelize");
 
 const app = express();
 const PORT = process.env.PORT;
-// const PORT = process.env.PORT || 8000;
 
 // ✅ CORS configuration
 app.use(
