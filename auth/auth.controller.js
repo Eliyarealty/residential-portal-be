@@ -1,4 +1,4 @@
-const userService = require("./user.service");
+const userService = require("./auth.service");
 
 exports.verifyToken = async (req, res) => {
   try {
