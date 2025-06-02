@@ -9,9 +9,11 @@ exports.verifyToken = async (req, res) => {
 
     const isValid = await userService.verifyToken(token);
     if (isValid) {
-      return res.status(200).json({ message: "Token is valid" });
+      return res.status(200).json({ valid: true, message: "Token is valid" });
     } else {
-      return res.status(401).json({ message: "Invalid or expired token" });
+      return res
+        .status(401)
+        .json({ valid: false, message: "Invalid or expired token" });
     }
   } catch (error) {
     console.error("Error verifying token:", error);
