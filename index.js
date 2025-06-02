@@ -28,6 +28,7 @@ const propertyRoutes = require("./property/property.routes");
 const emailRoutes = require("./email/email.routes");
 const notificationRoutes = require("./notifications/notification.routes");
 const blogRoutes = require("./blog/blog.routes");
+const authRoutes = require("./auth/auth.route");
 
 // ✅ Use routes
 app.use("/api/v2/user", userRoutes);
@@ -38,6 +39,7 @@ app.use("/api/v2/property", propertyRoutes);
 app.use("/api/v2/email", emailRoutes);
 app.use("/api/v2/notification", notificationRoutes);
 app.use("/api/v2/blog", blogRoutes);
+app.use("/api/v2/auth", authRoutes);
 
 // ✅ Default route for test
 app.get("/", (req, res) => {
