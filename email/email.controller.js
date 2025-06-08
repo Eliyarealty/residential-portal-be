@@ -15,7 +15,8 @@ exports.createEmail = async (req, res) => {
 
 exports.getAllEmails = async (req, res) => {
   try {
-    const response = await emailService.getAllEmails();
+    const receiverEmail = req.query.receiverEmail; // Get from query param
+    const response = await emailService.getAllEmails(receiverEmail);
     res.status(response.code).json(response);
   } catch (error) {
     res.status(500).json({

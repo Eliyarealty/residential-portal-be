@@ -98,9 +98,12 @@ exports.createEmail = async (data) => {
     };
   }
 };
-exports.getAllEmails = async () => {
+exports.getAllEmails = async (receiverEmail) => {
   try {
-    const emails = await Email.findAll();
+    const where = receiverEmail
+      ? { receiverEmail: receiverEmail.toLowerCase() }
+      : {};
+    const emails = await Email.findAll({ where });
     return {
       status: "success",
       code: 200,
@@ -108,7 +111,7 @@ exports.getAllEmails = async () => {
       result: emails,
     };
   } catch (error) {
-    console.error("Get All Emails Error:", error.message);
+    console.error("Get All Emails Error:", error.stack);
     throw new Error("Failed to fetch emails");
   }
 };
