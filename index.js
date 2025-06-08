@@ -1,19 +1,28 @@
 const express = require("express");
 const cors = require("cors");
-require("dotenv").config();
+require("dotenv").config({
+  path: process.env.NODE_ENV === "development" ? ".env.local" : ".env",
+});
+
 const sequelize = require("./config/sequelize");
 
 const app = express();
-const PORT = process.env.PORT;
+const PORT = process.env.PORT || 5000; // fallback to 5000 if undefined
 
 // ✅ CORS configuration
+const allowedOrigins =
+  process.env.NODE_ENV === "development"
+    ? ["http://localhost:3000"]
+    : ["https://residential-portal-production.up.railway.app"];
+
 app.use(
   cors({
-    origin: ["https://residential-portal-production.up.railway.app"],
+    origin: allowedOrigins,
     credentials: true,
   })
 );
 
+// ✅ Middleware
 app.use(express.json());
 
 // ✅ Import models to initialize associations
