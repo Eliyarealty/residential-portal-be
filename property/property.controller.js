@@ -171,3 +171,23 @@ exports.deleteProperty = async (req, res) => {
     });
   }
 };
+
+exports.getLatestProperties = async (req, res) => {
+  try {
+    const properties = await propertyService.getLatestProperties();
+    res.status(200).json({
+      code: 200,
+      status: "success",
+      message: "Latest properties fetched successfully",
+      result: properties,
+    });
+  } catch (error) {
+    console.error("Error in getLatestProperties:", error);
+    res.status(500).json({
+      code: 500,
+      status: "error",
+      message: "Failed to fetch latest properties",
+      result: null,
+    });
+  }
+};

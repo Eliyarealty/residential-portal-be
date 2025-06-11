@@ -4,6 +4,7 @@ const propertyController = require("./property.controller");
 const upload = require("../utils/cloudinary");
 const verifyToken = require("../user/user.service").verifyToken;
 
+router.get("/latest", propertyController.getLatestProperties);
 router.post(
   "/",
   verifyToken,
@@ -13,6 +14,7 @@ router.post(
   ]),
   propertyController.createProperty
 );
+
 router.get("/", propertyController.getProperties);
 router.get("/", propertyController.getAllProperties);
 router.get("/:id", propertyController.getPropertyById);
