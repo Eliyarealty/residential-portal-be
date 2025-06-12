@@ -43,6 +43,19 @@ exports.getAllBlogs = async () => {
   }
 };
 
+exports.getLatestBlogs = async () => {
+  try {
+    const blogs = await Blog.findAll({
+      order: [["createdAt", "DESC"]],
+      limit: 3,
+    });
+    return blogs;
+  } catch (error) {
+    console.error("Error in getLatestBlogs service:", error);
+    throw error;
+  }
+};
+
 exports.getBlogById = async (id) => {
   try {
     const blog = await Blog.findByPk(id);

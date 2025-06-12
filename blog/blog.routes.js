@@ -3,6 +3,7 @@ const router = express.Router();
 const blogController = require("./blog.controller");
 const upload = require("../utils/cloudinary"); // your multer config
 
+router.get("/latest", blogController.getLatestBlogs);
 router.post("/", upload.single("image"), blogController.createBlog);
 router.get("/", blogController.getAllBlogs);
 router.get("/:id", blogController.getBlogById);

@@ -85,6 +85,27 @@ exports.getProperties = async (req, res) => {
   }
 };
 
+exports.getBuyProperties = async (req, res) => {
+  try {
+    const filters = req.query;
+    const properties = await propertyService.getProperties(filters);
+    res.status(200).json({
+      status: true,
+      code: 200,
+      message: "Buy properties fetched successfully",
+      result: properties,
+    });
+  } catch (error) {
+    console.error("Error in controller getBuyProperties:", error);
+    res.status(500).json({
+      status: false,
+      code: 500,
+      message: "Failed to fetch buy properties",
+      result: null,
+    });
+  }
+};
+
 exports.getPropertyById = async (req, res) => {
   try {
     const property = await propertyService.getPropertyById(req.params.id);

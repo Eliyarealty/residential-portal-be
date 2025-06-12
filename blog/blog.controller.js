@@ -44,6 +44,37 @@ exports.getAllBlogs = async (req, res) => {
   }
 };
 
+exports.getLatestBlogs = async (req, res) => {
+  try {
+    const blogs = await blogService.getLatestBlogs();
+    console.log("Fetched blogs:", blogs); // <-- Add this line
+
+    if (!blogs || blogs.length === 0) {
+      return res.status(404).json({
+        status: false,
+        code: 404,
+        message: "Blog not found",
+        result: null,
+      });
+    }
+
+    res.status(200).json({
+      status: true,
+      code: 200,
+      message: "Latest blogs fetched successfully",
+      result: blogs,
+    });
+  } catch (error) {
+    console.error("Error fetching latest blogs:", error);
+    res.status(500).json({
+      status: false,
+      code: 500,
+      message: "Failed to fetch latest blogs",
+      result: null,
+    });
+  }
+};
+
 exports.getBlogById = async (req, res) => {
   try {
     const response = await blogService.getBlogById(req.params.id);

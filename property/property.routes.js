@@ -16,6 +16,7 @@ router.post(
 );
 
 router.get("/", propertyController.getProperties);
+router.get("/buy", propertyController.getBuyProperties);
 router.get("/", propertyController.getAllProperties);
 router.get("/:id", propertyController.getPropertyById);
 router.put("/:id", propertyController.updateProperty);
