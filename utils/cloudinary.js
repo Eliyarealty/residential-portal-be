@@ -11,7 +11,7 @@ cloudinary.config({
 const storage = new CloudinaryStorage({
   cloudinary: cloudinary,
   params: {
-    folder: "listings", // Change as needed
+    folder: "listings", // Change as needed (e.g., "team_images" for team uploads)
     allowed_formats: ["jpg", "png", "jpeg"],
   },
 });

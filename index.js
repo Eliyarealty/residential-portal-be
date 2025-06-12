@@ -38,7 +38,9 @@ const emailRoutes = require("./email/email.routes");
 const notificationRoutes = require("./notifications/notification.routes");
 const blogRoutes = require("./blog/blog.routes");
 const buyRoutes = require("./buy/buy.route");
+const teamRoutes = require("./team/team.route");
 const authRoutes = require("./auth/auth.route");
+const sellRoute = require("./sell/sell.routes");
 
 // ✅ Use routes
 app.use("/api/v2/user", userRoutes);
@@ -51,6 +53,8 @@ app.use("/api/v2/notification", notificationRoutes);
 app.use("/api/v2/blog", blogRoutes);
 app.use("/api/v2/buy", buyRoutes);
 app.use("/api/v2/auth", authRoutes);
+app.use("/api/v2/team", teamRoutes);
+app.use("/api/v2/sell", sellRoute);
 
 // ✅ Default route for test
 app.get("/", (req, res) => {
