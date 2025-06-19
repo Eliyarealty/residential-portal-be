@@ -1,5 +1,4 @@
 const UserProfile = require("./profile.model");
-
 const User = require("../user/user.model");
 
 exports.updateUserProfile = async (userId, data, file) => {
@@ -89,13 +88,18 @@ exports.getUserProfileById = async (userId) => {
   try {
     const profile = await UserProfile.findOne({
       where: { userId },
-      attributes: {
-        exclude: ["createdAt", "updatedAt"], // optionally exclude fields
-      },
+      attributes: { exclude: ["createdAt", "updatedAt"] },
+      include: [
+        {
+          model: User,
+          as: "user",
+          attributes: ["id", "fullname", "email", "phone"],
+        },
+      ],
     });
 
     return profile;
   } catch (error) {
-    throw error; // Let controller handle the error
+    throw error;
   }
 };

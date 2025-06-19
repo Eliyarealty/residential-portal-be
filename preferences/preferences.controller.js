@@ -42,6 +42,37 @@ exports.getAllPreferences = async (req, res) => {
   }
 };
 
+exports.getPreferenceByUserId = async (req, res) => {
+  try {
+    const preference = await preferenceService.getPreferenceByUserId(
+      req.params.userId
+    );
+    if (!preference) {
+      return res.status(404).json({
+        status: "error",
+        code: 404,
+        message: "Preference not found for user",
+        result: null,
+      });
+    }
+
+    return res.status(200).json({
+      status: "success",
+      code: 200,
+      message: "Preference fetched successfully",
+      result: preference,
+    });
+  } catch (error) {
+    console.error("Error fetching preference by userId:", error);
+    return res.status(500).json({
+      status: "error",
+      code: 500,
+      message: "Internal server error",
+      result: null,
+    });
+  }
+};
+
 exports.getPreferenceById = async (req, res) => {
   try {
     const preference = await preferenceService.getPreferenceById(req.params.id);

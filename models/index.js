@@ -5,7 +5,7 @@ const Preferences = require("../preferences/preferences.model");
 // Associations
 User.hasOne(UserProfile, {
   foreignKey: "userId",
-  as: "profile",
+  as: "userProfile",
   onDelete: "CASCADE",
   onUpdate: "CASCADE",
 });

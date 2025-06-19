@@ -3,7 +3,7 @@ const cors = require("cors");
 require("dotenv").config({
   path: process.env.NODE_ENV === "development" ? ".env.local" : ".env",
 });
-
+// const defineAssociations = require("./models/association");
 const sequelize = require("./config/sequelize");
 
 const app = express();
@@ -56,44 +56,46 @@ app.use("/api/v2/auth", authRoutes);
 app.use("/api/v2/team", teamRoutes);
 app.use("/api/v2/sell", sellRoute);
 
-// ✅ Default route for test
+// defineAssociations();
+
+// Default route for test
 app.get("/", (req, res) => {
-  res.status(200).send("✅ Backend is running on Railway 🚀");
+  res.status(200).send("Backend is running on Railway 🚀");
 });
 
-// ✅ Catch-all route for unmatched paths
+// Catch-all route for unmatched paths
 app.use((req, res) => {
   res.status(404).json({
     status: false,
-    message: "❌ Route not found",
+    message: "Route not found",
     url: req.originalUrl,
   });
 });
 
-// ✅ Global unhandled error catch
+// Global unhandled error catch
 process.on("unhandledRejection", (err) => {
-  console.error("❌ Unhandled Rejection:", err);
+  console.error("Unhandled Rejection:", err);
   process.exit(1);
 });
 
-// ✅ Connect to database and start server
-console.log("🔄 Connecting to the database...");
+//Connect to database and start server
+console.log("Connecting to the database...");
 
 sequelize
   .authenticate()
   .then(() => {
-    console.log("✅ Database connected successfully.");
+    console.log("Database connected successfully.");
     return sequelize
       .sync({ alter: true }) // Use `alter: true` for development, `force: true` for production
-      .then(() => console.log("✅ Tables synced."))
-      .catch((err) => console.error("❌ Sync failed:", err));
+      .then(() => console.log("Tables synced."))
+      .catch((err) => console.error("Sync failed:", err));
   })
   .then(() => {
-    console.log("✅ All models synchronized.");
+    console.log("All models synchronized.");
     app.listen(PORT, "0.0.0.0", () => {
-      console.log(`🚀 Server is running on port: ${PORT}`);
+      console.log(`Server is running on port: ${PORT}`);
     });
   })
   .catch((err) => {
-    console.error("❌ Unable to connect or sync to the database:", err);
+    console.error("Unable to connect or sync to the database:", err);
   });

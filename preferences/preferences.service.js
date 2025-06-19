@@ -27,6 +27,14 @@ exports.getAllPreferences = async () => {
   }
 };
 
+exports.getPreferenceByUserId = async (userId) => {
+  try {
+    return await Preferences.findOne({ where: { userId } });
+  } catch (error) {
+    throw error;
+  }
+};
+
 exports.getPreferenceById = async (id) => {
   try {
     return await Preferences.findByPk(id);
