@@ -212,3 +212,19 @@ exports.getLatestProperties = async (req, res) => {
     });
   }
 };
+
+exports.getPropertyMetrics = async (req, res) => {
+  try {
+    const metrics = await propertyService.getPropertyMetrics();
+    res.status(200).json({
+      status: "success",
+      data: metrics,
+    });
+  } catch (error) {
+    console.error("Error fetching property metrics:", error);
+    res.status(500).json({
+      status: "error",
+      message: "Failed to fetch property metrics",
+    });
+  }
+};

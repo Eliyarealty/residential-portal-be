@@ -14,7 +14,7 @@ router.post(
   ]),
   propertyController.createProperty
 );
-
+router.get("/metrics", propertyController.getPropertyMetrics);
 router.get("/", propertyController.getProperties);
 router.get("/buy", propertyController.getBuyProperties);
 router.get("/", propertyController.getAllProperties);

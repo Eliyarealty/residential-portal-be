@@ -126,3 +126,32 @@ exports.getLatestProperties = async () => {
     throw error;
   }
 };
+
+exports.getPropertyMetrics = async () => {
+  // Total number of properties
+  const totalProperties = await Property.count();
+
+  // Number of properties for sale (including "sell" as equivalent to "sale")
+  const saleProperties = await Property.count({
+    where: {
+      purpose: {
+        [Op.in]: ["sale", "sell"],
+      },
+    },
+  });
+
+  // Number of properties for rent
+  const rentProperties = await Property.count({
+    where: {
+      purpose: "rent",
+    },
+  });
+
+  const metrics = {
+    totalProperties,
+    saleProperties,
+    rentProperties,
+  };
+
+  return metrics;
+};
