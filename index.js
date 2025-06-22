@@ -41,6 +41,7 @@ const buyRoutes = require("./buy/buy.route");
 const teamRoutes = require("./team/team.route");
 const authRoutes = require("./auth/auth.route");
 const sellRoute = require("./sell/sell.routes");
+const emailSentRoutes = require("./emailSent/email.routes");
 
 // ✅ Use routes
 app.use("/api/v2/user", userRoutes);
@@ -55,6 +56,7 @@ app.use("/api/v2/buy", buyRoutes);
 app.use("/api/v2/auth", authRoutes);
 app.use("/api/v2/team", teamRoutes);
 app.use("/api/v2/sell", sellRoute);
+app.use("/api/v2/emailSent", emailSentRoutes);
 
 // defineAssociations();
 
@@ -86,7 +88,7 @@ sequelize
   .then(() => {
     console.log("Database connected successfully.");
     return sequelize
-      .sync({ alter: true }) // Use `alter: true` for development, `force: true` for production
+      .sync() // Use `alter: true` for development, `force: true` for production
       .then(() => console.log("Tables synced."))
       .catch((err) => console.error("Sync failed:", err));
   })
