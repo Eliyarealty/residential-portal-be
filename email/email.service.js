@@ -181,3 +181,28 @@ exports.deleteEmail = async (id) => {
     throw error;
   }
 };
+
+exports.getEmailsAssignedToUser = async (userId) => {
+  return await Email.findAll({
+    where: {
+      assignedToUserId: userId,
+    },
+    order: [["createdAt", "DESC"]],
+  });
+};
+
+exports.getEmailsByAssignedUserId = async (userId) => {
+  try {
+    const emails = await Email.findAll({
+      where: { assignedToUserId: userId },
+      order: [["createdAt", "DESC"]],
+    });
+
+    return {
+      result: emails,
+    };
+  } catch (error) {
+    console.error("Get Emails By Assigned User ID Error:", error.message);
+    throw error;
+  }
+};

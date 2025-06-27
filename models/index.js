@@ -1,5 +1,7 @@
 const User = require("../user/user.model");
 const UserProfile = require("../userProfile/profile.model");
+const Users = require("../users/users.model");
+const UsersProfile = require("../usersProfile/profile.model");
 const Preferences = require("../preferences/preferences.model");
 
 // Associations
@@ -24,6 +26,16 @@ User.hasOne(Preferences, {
 });
 Preferences.belongsTo(User, {
   foreignKey: "userId",
+});
+
+Users.hasOne(UsersProfile, {
+  foreignKey: "userId",
+  as: "profile",
+});
+
+UsersProfile.belongsTo(Users, {
+  foreignKey: "userId",
+  as: "user",
 });
 
 module.exports = {

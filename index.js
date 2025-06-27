@@ -29,7 +29,7 @@ app.use(express.json());
 require("./models");
 
 // ✅ Import routes
-const userRoutes = require("./user/user.route");
+const adminRoutes = require("./user/user.route");
 const listingRoutes = require("./listing/listing.routes");
 const profileRoutes = require("./userProfile/profile.routes");
 const preferencesRoutes = require("./preferences/preferences.routes");
@@ -42,9 +42,11 @@ const teamRoutes = require("./team/team.route");
 const authRoutes = require("./auth/auth.route");
 const sellRoute = require("./sell/sell.routes");
 const emailSentRoutes = require("./emailSent/email.routes");
+const userRoutes = require("./users/users.route");
+const usersProfileRoutes = require("./usersProfile/profile.routes");
 
 // ✅ Use routes
-app.use("/api/v2/user", userRoutes);
+app.use("/api/v2/user", adminRoutes);
 app.use("/api/v2/listing", listingRoutes);
 app.use("/api/v2/profile", profileRoutes);
 app.use("/api/v2/preferences", preferencesRoutes);
@@ -57,6 +59,8 @@ app.use("/api/v2/auth", authRoutes);
 app.use("/api/v2/team", teamRoutes);
 app.use("/api/v2/sell", sellRoute);
 app.use("/api/v2/emailSent", emailSentRoutes);
+app.use("/api/v2/users", userRoutes);
+app.use("/api/v2/usersProfile", usersProfileRoutes);
 
 // defineAssociations();
 

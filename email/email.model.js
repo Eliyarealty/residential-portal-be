@@ -33,6 +33,14 @@ const Email = sequelize.define(
       allowNull: false,
       defaultValue: false, // Default to unread
     },
+    assignedToUserId: {
+      type: DataTypes.INTEGER,
+      allowNull: true, // Optional, can be null if not assigned
+      references: {
+        model: "Users", // Assuming you have a Users model
+        key: "id",
+      },
+    },
   },
   {
     timestamps: true,

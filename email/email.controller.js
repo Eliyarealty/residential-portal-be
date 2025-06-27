@@ -65,3 +65,67 @@ exports.deleteEmail = async (req, res) => {
     });
   }
 };
+
+exports.getEmailsByAssignedUser = async (req, res) => {
+  try {
+    const userId = parseInt(req.params.userId, 10);
+
+    if (isNaN(userId)) {
+      return res.status(400).json({
+        code: 400,
+        status: "error",
+        message: "Invalid user ID",
+        result: null,
+      });
+    }
+
+    const emails = await emailService.getEmailsAssignedToUser(userId);
+
+    return res.status(200).json({
+      code: 200,
+      status: "success",
+      message: "Emails fetched successfully",
+      result: emails,
+    });
+  } catch (error) {
+    console.error("Error fetching assigned emails:", error);
+    return res.status(500).json({
+      code: 500,
+      status: "error",
+      message: "Internal server error",
+      result: null,
+    });
+  }
+};
+
+exports.getEmailsByAssignedUserId = async (req, res) => {
+  try {
+    const userId = parseInt(req.params.userId, 10);
+
+    if (isNaN(userId)) {
+      return res.status(400).json({
+        code: 400,
+        status: "error",
+        message: "Invalid user ID",
+        result: null,
+      });
+    }
+
+    const emails = await emailService.getEmailsByAssignedUserId(userId);
+
+    return res.status(200).json({
+      code: 200,
+      status: "success",
+      message: "Emails fetched successfully",
+      result: emails,
+    });
+  } catch (error) {
+    console.error("Error fetching assigned emails:", error);
+    return res.status(500).json({
+      code: 500,
+      status: "error",
+      message: "Internal server error",
+      result: null,
+    });
+  }
+};
