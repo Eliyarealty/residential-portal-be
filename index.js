@@ -44,6 +44,7 @@ const sellRoute = require("./sell/sell.routes");
 const emailSentRoutes = require("./emailSent/email.routes");
 const userRoutes = require("./users/users.route");
 const usersProfileRoutes = require("./usersProfile/profile.routes");
+const usersPropertyRoutes = require("./usersProperty/property.routes");
 
 // ✅ Use routes
 app.use("/api/v2/user", adminRoutes);
@@ -61,6 +62,7 @@ app.use("/api/v2/sell", sellRoute);
 app.use("/api/v2/emailSent", emailSentRoutes);
 app.use("/api/v2/users", userRoutes);
 app.use("/api/v2/usersProfile", usersProfileRoutes);
+app.use("/api/v2/usersProperty", usersPropertyRoutes);
 
 // defineAssociations();
 
