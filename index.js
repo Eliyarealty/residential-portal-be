@@ -27,6 +27,8 @@ app.use(express.json());
 
 // ✅ Import models to initialize associations
 require("./models");
+const defineAssociations = require("./models/associations");
+defineAssociations();
 
 // ✅ Import routes
 const adminRoutes = require("./user/user.route");
