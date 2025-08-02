@@ -68,7 +68,7 @@ app.use("/api/v2/usersProperty", usersPropertyRoutes);
 
 // Default route for test
 app.get("/", (req, res) => {
-  res.status(200).send("Backend is running on Railway 🚀");
+  res.status(200).send("Backend is running on Railway Server🚀");
 });
 
 // Catch-all route for unmatched paths
