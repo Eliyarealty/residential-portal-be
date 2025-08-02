@@ -47,6 +47,7 @@ const UserProfile = sequelize.define(
     },
   },
   {
+    tableName: "UsersProfiles",
     timestamps: true,
   }
 );

@@ -1,8 +1,8 @@
 const { DataTypes } = require("sequelize");
 const sequelize = require("../config/sequelize");
 
-const User = sequelize.define(
-  "User",
+const Users = sequelize.define(
+  "UsersEntity", // 👈 Different internal model name
   {
     fullname: {
       type: DataTypes.STRING,
@@ -26,8 +26,8 @@ const User = sequelize.define(
     },
   },
   {
-    tableName: "Users",
+    tableName: "Users", // ✅ This still maps to correct DB table
   }
 );
 
-module.exports = User;
+module.exports = Users;
