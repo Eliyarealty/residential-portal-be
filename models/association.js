@@ -1,9 +1,13 @@
-const User = require("../user/user.model");
-const UserProfile = require("../userProfile/profile.model");
-const Preferences = require("../preferences/preferences.model");
+const {
+  User,
+  UserProfile,
+  Preferences,
+  Users,
+  UsersProfile,
+} = require("./index");
 
 function defineAssociations() {
-  // User to UserProfile (1:1)
+  // User ↔ UserProfile
   User.hasOne(UserProfile, {
     foreignKey: "userId",
     as: "profile",
@@ -13,14 +17,24 @@ function defineAssociations() {
     as: "user",
   });
 
-  // User to Preferences (1:1)
+  // User ↔ Preferences
   User.hasOne(Preferences, {
     foreignKey: "userId",
-    as: "preferences", // Ensure unique alias
+    as: "preferences",
   });
   Preferences.belongsTo(User, {
     foreignKey: "userId",
-    as: "user",
+    as: "userPreferences", // ✅ unique alias
+  });
+
+  // Users ↔ UsersProfile
+  Users.hasOne(UsersProfile, {
+    foreignKey: "userId",
+    as: "profile",
+  });
+  UsersProfile.belongsTo(Users, {
+    foreignKey: "userId",
+    as: "usersEntity", // ✅ unique alias
   });
 }
 

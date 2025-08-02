@@ -96,7 +96,7 @@ sequelize
   .then(() => {
     console.log("Database connected successfully.");
     return sequelize
-      .sync() // Use `alter: true` for development, `force: true` for production
+      .sync({ alter: true }) // Use `alter: true` for development, `force: true` for production
       .then(() => console.log("Tables synced."))
       .catch((err) => console.error("Sync failed:", err));
   })
