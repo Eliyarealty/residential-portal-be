@@ -88,6 +88,7 @@ exports.getProperties = async (filters) => {
       include: [
         {
           model: User,
+          as: "userEntity",
           attributes: ["isAgent"],
         },
       ],

@@ -5,6 +5,7 @@ const {
   Users,
   UsersProfile,
 } = require("./index");
+const UserProperty = require("../usersProperty/property.model");
 
 function defineAssociations() {
   // User ↔ UserProfile
@@ -35,6 +36,15 @@ function defineAssociations() {
   UsersProfile.belongsTo(Users, {
     foreignKey: "userId",
     as: "usersEntity", // ✅ unique alias
+  });
+
+  Users.hasMany(UserProperty, {
+    foreignKey: "userId",
+    as: "userProperties", // choose alias meaningfully
+  });
+  UserProperty.belongsTo(Users, {
+    foreignKey: "userId",
+    as: "userEntity", // this alias should match your include
   });
 }
 
