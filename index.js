@@ -13,7 +13,8 @@ const PORT = process.env.PORT || 5000; // fallback to 5000 if undefined
 const allowedOrigins =
   process.env.NODE_ENV === "development"
     ? ["http://localhost:3000"]
-    : ["https://residential-portal-production.up.railway.app"];
+    : ["https://residential-portal-9prq.vercel.app/"];
+// : ["https://residential-portal-production.up.railway.app"];
 
 app.use(
   cors({
